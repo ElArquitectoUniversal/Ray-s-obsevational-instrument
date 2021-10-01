@@ -62,7 +62,7 @@ function analyze(input_session_object){
         let timestamp_array_abilities = timestamp_array[0];
         let timestamp_array_object_property = timestamp_array[1];
         let timestamp_array_object = timestamp_array[2];  
-        //OBJETO CON INDICE OBTENIDO EN GET_STRING_CASE()o
+        //OBJETO CON INDICE OBTENIDO EN GET_STRING_CASE()
         let output_object_son = {};
         for (let i = 0, l = timestamp_array_abilities.length; i < l; i++){
             for (let j = 0, k = 0, m = timestamp_array_object_property.length, n = timestamp_array_object.length; j < m; j++){
@@ -73,7 +73,7 @@ function analyze(input_session_object){
                 //OBTENCIÓN DEL INT CASE
                 let key_case = `${timestamp_array_abilities[i]}${timestamp_array_object_property[j]}${timestamp_array_object[k]}`;
                 let int_case = get_int_case(key_case);
-                //DECLARACIÓN DEL INDICE DEL OBJETO (STRING) EL PARAMETRO ES UN ARRAY [0,0,0]
+                //DECLARACIÓN DEL INDICE DEL OBJETO (STRING) EL PARAMETRO ES UN OBJETO
                 let output_object_son_index = `${string_abilities} // ${string_object_property} // ${string_object}`;
                 output_object_son[output_object_son_index] = int_case;
                 if (j == m - 1 && k < n - 1){
