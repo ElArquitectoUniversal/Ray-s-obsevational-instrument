@@ -11,4 +11,4 @@ Nunca he escrito un README.md así que me disculpo por lo terrible que pueda ser
 <a name="general-info"></a>
 Write down the general informations of your project. It is worth to always put a project status in the Readme file. This is where you can add it. 
 ### Screenshot
-![Image text](/path/to/the/screenshot.png)
+![Image text](http://lorempixel.com/500/400)
