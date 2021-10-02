@@ -212,9 +212,9 @@ const input_session_object = {
     '1128.896': [[0,0,0,1,1,0],[0,1,0,0],[1,1,0]],
     '1131.889': [[1,0,0,0,0,0],[0,1,0,0],[1,1,0]],
     '1140.392': [[1,0,0,0,0,0],[0,1,0,0],[1,1,0]],
-    '1142.585': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0,0]],
-    '1152.869': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0,0,0]],
-    '1155.610': [[0,0,0,0,0,0],[0,1,0,0],[1,1,0,0,0,0]]
+    '1142.585': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0]],
+    '1152.869': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0]],
+    '1155.610': [[0,0,0,0,0,0],[0,1,0,0],[1,1,0]]
 }
 
 function get_string_case(i,j,k) {
@@ -224,7 +224,7 @@ function get_string_case(i,j,k) {
 
     let abilities_possible_cases = {0: "Conteo",1: "Identificacion Cardinal",2: "Identificacion Ordinal",3: "Variacion Cardinal",4: "Correspondecia Digito Objeto Palabra",5: "Otras"};
     let object_property_possible_cases = {0: "Instruir",1: "Instigar",2: "Señalar",3: "Discriminar"};
-    let object_possible_cases = {0: "Ficha",1: "Cubo",2: "Enseñante",3: "Alumno", 4: "Cigarro", 5: "Mechero"}
+    let object_possible_cases = {0: "Ficha",1: "Cubo",2: "Enseñante"}
     
     if (i in abilities_possible_cases && j in object_property_possible_cases && k in object_possible_cases) {
         string_abilities = abilities_possible_cases[i];
@@ -245,6 +245,8 @@ function get_int_case(key_case) {
 }
 
 function analyze(input_session_object){
+    let test;
+
     let output_session_object = {};
     let object_keys = Object.keys(input_session_object);
     for (let x = 0; x < object_keys.length; x++) {
@@ -256,6 +258,9 @@ function analyze(input_session_object){
         //OBJETO CON INDICE OBTENIDO EN GET_STRING_CASE()
         let output_object_son = {};
         for (let i = 0, l = timestamp_array_abilities.length; i < l; i++){
+            if (timestamp_array_abilities[i] == 'x') {
+                test = 'yuhu';
+            }
             for (let j = 0, k = 0, m = timestamp_array_object_property.length, n = timestamp_array_object.length; j < m; j++){
                 let string_array = get_string_case(i,j,k);
                 let string_abilities = string_array[0];
