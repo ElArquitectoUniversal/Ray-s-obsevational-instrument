@@ -1,4 +1,4 @@
-let input_session_object = {
+const input_session_object = {
     "3.403": [[0,0,0,0,0,0],[1,0,0,0],[1,1,0]],
     "14.185": [[0,1,0,0,0,0],[1,0,0,0],[1,1,0]],
     "14.934": [[0,1,0,0,0,0],[1,0,0,0],[1,1,0]],
@@ -108,7 +108,7 @@ function get_string_case(i,j,k) {
 
 function get_int_case(key_case) {
     let int_case;
-    let possible_cases = {"111": 1 + " -FUNCION EMERGIDA-","110": 2,"101": 3,"000": 4,"001": 5,"010": 6,"100": 7,"011": 8 + " -EMERGENCIA DE FUNCIÓN-"};
+    let possible_cases = {"111": 1,"110": 2,"101": 3,"000": 4,"001": 5,"010": 6,"100": 7,"011": 8};
     if (key_case in possible_cases) {
         int_case = possible_cases[key_case];
     }
@@ -148,4 +148,28 @@ function analyze(input_session_object){
     }
     return output_session_object; 
 }
-console.log(analyze(input_session_object));
+
+function get_only_important_cases(analyzed_session_object) {
+    let important_cases_object = {};
+    let object_keys = Object.keys(analyzed_session_object);
+
+    for (let x = 0; x < object_keys.length; x++) {
+        const timestamp = object_keys[x];
+        let object_son = analyzed_session_object[timestamp];
+        let object_son_keys = Object.keys(object_son);
+        let output_object_son = {};
+        for (let y = 0; y < object_son_keys.length; y++) {
+            const string_index = object_son_keys[y];
+            let int_case = object_son[string_index];
+            if (int_case == 1 || int_case == 8) {
+                output_object_son[string_index] = int_case;
+            }
+        }
+        important_cases_object[timestamp] = output_object_son;
+    }
+    return important_cases_object;
+}
+
+//console.log(analyze(input_session_object));
+
+console.log(get_only_important_cases(analyze(input_session_object)));
