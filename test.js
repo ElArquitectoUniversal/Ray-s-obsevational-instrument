@@ -248,9 +248,11 @@ function analyze(input_session_object){
     let test;
 
     let output_session_object = {};
+    let chart_data = [];
     let object_keys = Object.keys(input_session_object);
     for (let x = 0; x < object_keys.length; x++) {
         const timestamp = object_keys[x];
+        let key_cases_array = [];
         let timestamp_array = input_session_object[timestamp];
         let timestamp_array_abilities = timestamp_array[0];
         let timestamp_array_object_property = timestamp_array[1];
@@ -258,17 +260,19 @@ function analyze(input_session_object){
         //OBJETO CON INDICE OBTENIDO EN GET_STRING_CASE()
         let output_object_son = {};
         for (let i = 0, l = timestamp_array_abilities.length; i < l; i++){
-            if (timestamp_array_abilities[i] == 'x') {
-                test = 'yuhu';
-            }
             for (let j = 0, k = 0, m = timestamp_array_object_property.length, n = timestamp_array_object.length; j < m; j++){
                 let string_array = get_string_case(i,j,k);
                 let string_abilities = string_array[0];
                 let string_object_property = string_array[1];
                 let string_object = string_array[2];
                 //OBTENCIÓN DEL INT CASE
-                let key_case = `${timestamp_array_abilities[i]}${timestamp_array_object_property[j]}${timestamp_array_object[k]}`;
+                let key_case = `${timestamp_array_abilities[i]}${timestamp_array_object_property[j]}${timestamp_array_object[k]}`;  
                 let int_case = get_int_case(key_case);
+                //CHART
+                const reducer = (previousValue, currentValue) => previousValue + currentValue;
+                let complete_case = [parseInt(timestamp_array_abilities[i]),parseInt(timestamp_array_object_property[j]),parseInt(timestamp_array_object[k])];
+                let reduce_case = complete_case.reduce(reducer)
+                key_cases_array.push(reduce_case);
                 //DECLARACIÓN DEL INDICE DEL OBJETO (STRING) EL PARAMETRO ES UN OBJETO
                 let output_object_son_index = `${string_abilities} // ${string_object_property} // ${string_object}`;
                 output_object_son[output_object_son_index] = int_case;
@@ -278,9 +282,11 @@ function analyze(input_session_object){
                 }
             }
         }
+        chart_data.push(key_cases_array);
         output_session_object[timestamp] = output_object_son;
     }
-    return output_session_object; 
+    //return output_session_object; 
+    return chart_data
 }
 
 function search_by_int_case(analyzed_session_object, search) {
@@ -313,7 +319,28 @@ function input_search_by_timestamp(input_session_object, search) {
 }
 
 
-console.log(analyze(input_session_object));
+
+var layout = {
+    title: "Ray's Observational Instrument 1st Session",
+    autosize: false,
+    width: 700,
+    height: 700,
+    margin: {
+      l: 65,
+      r: 50,
+      b: 65,
+      t: 90,
+    }
+}
+
+
+Plotly.newPlot('chart', [{ //multiple traces
+    z: analyze(input_session_object),
+    type: 'surface'
+}], layout);
+
+
+//console.log(analyze(input_session_object));
 
 //console.log(search_by_int_case(analyze(input_session_object), search_parameters.search_by_int_case));
 
