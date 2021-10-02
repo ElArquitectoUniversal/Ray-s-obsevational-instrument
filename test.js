@@ -319,8 +319,7 @@ function input_search_by_timestamp(input_session_object, search) {
 }
 
 
-
-var layout = {
+let layout = {
     title: "Ray's Observational Instrument 1st Session",
     autosize: false,
     width: 700,
@@ -334,12 +333,34 @@ var layout = {
 }
 
 
+
+
+
+
+
+
+  
+
+
 Plotly.newPlot('chart', [{ //multiple traces
     z: analyze(input_session_object),
     type: 'surface'
 }], layout);
 
 
+function search_trace() {
+    let search = document.getElementById("trace").value;
+
+    let trace = {
+        y: analyze(input_session_object)[search],
+        type: 'scatter'
+    };
+
+    var data = [trace];
+
+    Plotly.newPlot('chart_time', data , layout);
+    
+}
 //console.log(analyze(input_session_object));
 
 //console.log(search_by_int_case(analyze(input_session_object), search_parameters.search_by_int_case));

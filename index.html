@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@300&family=Spartan:wght@200&display=swap');
 
-        #chart, #text{
+        #chart, #chart_time{
             width: 50%;
             float: left;
         }
@@ -18,14 +18,18 @@
             font-family: 'Koh Santepheap', cursive;
             font-size: 35px;
         }
+        #data{
+            word-wrap:break-word;
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
-    <div ID="text">
-        <h2>Datos de la sesion</h2>
-        <hr>
-    </div>
+    <div id="chart_time"></div>
     <div id="chart"></div>
+
+    <input type="text" id="trace">
+    <button onclick="search_trace();">:D</button>
     
     <script src="test.js"></script>
 </body>
