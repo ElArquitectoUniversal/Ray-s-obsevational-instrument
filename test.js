@@ -1,6 +1,6 @@
 const search_parameters = {
     'search_by_int_case': 6,
-    'search_by_timestamp': 14.185,
+    'search_by_timestamp': '1155.610',
     'input_search_by_timestamp': 14.185
 }
 
@@ -212,9 +212,9 @@ const input_session_object = {
     '1128.896': [[0,0,0,1,1,0],[0,1,0,0],[1,1,0]],
     '1131.889': [[1,0,0,0,0,0],[0,1,0,0],[1,1,0]],
     '1140.392': [[1,0,0,0,0,0],[0,1,0,0],[1,1,0]],
-    '1142.585': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0]],
-    '1152.869': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0]],
-    '1155.610': [[0,0,0,0,0,0],[0,1,0,0],[1,1,0]]
+    '1142.585': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0,0]],
+    '1152.869': [[0,0,0,0,1,0],[0,1,0,0],[1,1,0,0,0]],
+    '1155.610': [[0,0,0,0,0,0],[0,1,0,0],[1,1,0,0,0,0]]
 }
 
 function get_string_case(i,j,k) {
@@ -224,7 +224,7 @@ function get_string_case(i,j,k) {
 
     let abilities_possible_cases = {0: "Conteo",1: "Identificacion Cardinal",2: "Identificacion Ordinal",3: "Variacion Cardinal",4: "Correspondecia Digito Objeto Palabra",5: "Otras"};
     let object_property_possible_cases = {0: "Instruir",1: "Instigar",2: "Señalar",3: "Discriminar"};
-    let object_possible_cases = {0: "Ficha",1: "Cubo",2: "Enseñante"}
+    let object_possible_cases = {0: "Ficha",1: "Cubo",2: "Enseñante",3: "Alumno", 4: "Cigarro", 5: "Mechero"}
     
     if (i in abilities_possible_cases && j in object_property_possible_cases && k in object_possible_cases) {
         string_abilities = abilities_possible_cases[i];
