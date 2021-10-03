@@ -269,10 +269,14 @@ function analyze(input_session_object){
                 let key_case = `${timestamp_array_abilities[i]}${timestamp_array_object_property[j]}${timestamp_array_object[k]}`;  
                 let int_case = get_int_case(key_case);
                 //CHART
-                const reducer = (previousValue, currentValue) => previousValue + currentValue;
-                let complete_case = [parseInt(timestamp_array_abilities[i]),parseInt(timestamp_array_object_property[j]),parseInt(timestamp_array_object[k])];
-                let reduce_case = complete_case.reduce(reducer)
-                key_cases_array.push(reduce_case);
+                if (key_case == '011' || key_case == '111') {
+                    const reducer = (previousValue, currentValue) => previousValue + currentValue;
+                    let complete_case = [parseInt(timestamp_array_abilities[i]),parseInt(timestamp_array_object_property[j]),parseInt(timestamp_array_object[k])];
+                    let reduce_case = complete_case.reduce(reducer)
+                    key_cases_array.push(reduce_case);
+                }else{
+                    key_cases_array.push(0);
+                }
                 //DECLARACIÓN DEL INDICE DEL OBJETO (STRING) EL PARAMETRO ES UN OBJETO
                 let output_object_son_index = `${string_abilities} // ${string_object_property} // ${string_object}`;
                 output_object_son[output_object_son_index] = int_case;
@@ -334,11 +338,6 @@ let layout = {
 
 
 
-
-
-
-
-
   
 
 
@@ -361,7 +360,9 @@ function search_trace() {
     Plotly.newPlot('chart_time', data , layout);
     
 }
-//console.log(analyze(input_session_object));
+
+
+console.log(analyze(input_session_object));
 
 //console.log(search_by_int_case(analyze(input_session_object), search_parameters.search_by_int_case));
 
