@@ -362,7 +362,7 @@ function search_trace() {
 }
 
 
-console.log(analyze(input_session_object));
+//console.log(analyze(input_session_object));
 
 //console.log(search_by_int_case(analyze(input_session_object), search_parameters.search_by_int_case));
 
